@@ -21,7 +21,7 @@ Follow the following steps to install these plugins on your munin-node
 
 - Edit /etc/munin/plugin-conf.d/plugins, and add the following:
 
-    [mongo_coll*]
+    [mongo_*]
     user nobody
     env.HOST <mongodbs ip>
     env.PORT 27017
