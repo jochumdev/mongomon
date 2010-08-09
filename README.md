@@ -16,20 +16,17 @@ Installation
 -----------
 Follow the following steps to install these plugins on your munin-node
 
-1.) Copy "mongo_collcount" and "mongo_indexsize" into "/etc/mongo/plugins"
-2.) Copy the wildcard plugin "mongo_collsize" to /etc/mongo/plugins/mongo_collsize_<you collection>
+- Copy "mongo_collcount" and "mongo_indexsize" into "/etc/mongo/plugins"
+- Copy the wildcard plugin "mongo_collsize" to "/etc/mongo/plugins/mongo_collsize_\(you collection>)", where \(your collection\) means the name of the collection you want to monitor, this is case sensetive!
 
-where <your collection> means the name of the collection you want to monitor, this is case sensetive!
+- Edit /etc/munin/plugin-conf.d/plugins, and add the following:
 
-Edit /etc/munin/plugin-conf.d/plugins, and add the following:
+    [mongo_coll*]
+    user nobody
+    env.HOST <mongodbs ip>
+    env.PORT 27017
+    env.DB <the database you wanna watch>
 
-[mongo_coll*]
-user nobody
-env.HOST <mongodbs ip>
-env.PORT 27017
-env.DB <the database you wanna watch>
-
-At last restart munin-node:
-sudo /etc/init.d/munin-node restart
-
+- At last restart munin-node:
+    sudo /etc/init.d/munin-node restart
 
