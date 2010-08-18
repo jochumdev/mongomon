@@ -45,7 +45,7 @@ def getCollstats():
         for k, v in stats.iteritems():
         	if not k in settings_fields:
 		        continue
-	        yield (settings_fields[k], long(v),)
+	        yield (settings_fields[k].replace('.', '_'), long(v),)
 
 	con.disconnect()
 

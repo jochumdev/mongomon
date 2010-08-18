@@ -43,7 +43,7 @@ def getCollstats():
 		if coll.startswith('system.'):
 			continue
 		stats = db.command("collstats", coll)
-	        yield ("%s_count" % coll, long(stats['count']),)
+	        yield ("%s_count" % coll.replace('.', '_') long(stats['count']),)
 
 	con.disconnect()
 
@@ -57,7 +57,7 @@ def doConfig():
 
     print "graph_title MongoDB collection count"
     print "graph_args --base 1000 -l 0"
-    print "graph_vlabel documents / ${graph_period}"
+    print "graph_vlabel documents"
     print "graph_category MongoDB"
     print "graph_total total"
 
