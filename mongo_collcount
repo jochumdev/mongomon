@@ -43,7 +43,7 @@ def getCollstats():
 		if coll.startswith('system.'):
 			continue
 		stats = db.command("collstats", coll)
-	        yield ("%s_count" % coll.replace('.', '_') long(stats['count']),)
+	        yield ("%s_count" % coll.replace('.', '_'), long(stats['count']),)
 
 	con.disconnect()
 
