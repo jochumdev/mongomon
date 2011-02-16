@@ -38,7 +38,7 @@ settings_fields = {'totalIndexSize': 'index', 'storageSize': 'storage', 'size': 
 
 
 def getCollstats():
-	con = Connection(settings_host, int(settings_port))
+	con = Connection(settings_host, int(settings_port), slave_okay=True)
 	db = con[settings_db]
 
 	stats = db.command("collstats", settings_collection)

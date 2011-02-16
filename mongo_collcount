@@ -36,7 +36,7 @@ settings_db = 'mydb'
 
 
 def getCollstats():
-	con = Connection(settings_host, int(settings_port))
+	con = Connection(settings_host, int(settings_port), slave_okay=True)
 	db = con[settings_db]
 
 	for coll in db.collection_names():
