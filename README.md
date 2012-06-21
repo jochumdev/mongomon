@@ -16,10 +16,10 @@ Installation
 -----------
 Follow the following steps to install these plugins on your munin-node
 
-- Copy "mongo_collcount" and "mongo_indexsize" into "/etc/mongo/plugins"
-- Copy the wildcard plugin "mongo_collsize" to "/etc/mongo/plugins/mongo_collsize\_\<your collection\>", where \<your collection\> means the name of the collection you want to monitor, this is case sensetive!
+- Copy `mongo_collcount` and `mongo_indexsize` into `/etc/mongo/plugins`
+- Copy the wildcard plugin `mongo_collsize` to `/etc/mongo/plugins/mongo_collsize_<your collection>`, where `<your collection>` means the name of the collection you want to monitor, this is case sensetive!
 
-- Edit /etc/munin/plugin-conf.d/plugins, and add the following:
+- Edit `/etc/munin/plugin-conf.d/plugins`, and add the following:
 
         [mongo_*]
         user nobody
