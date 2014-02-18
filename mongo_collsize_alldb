@@ -33,12 +33,18 @@ from pymongo import Connection
 settings_host = '127.0.0.1'
 settings_port = 27017
 settings_db = 'mydb'
+settings_user = ''
+settings_password = ''
 settings_collection = 'things'
 settings_fields = {'totalIndexSize': 'index', 'storageSize': 'storage', 'size': 'data'}
 
 
 def getCollstats():
 	con = Connection(settings_host, int(settings_port), slave_okay=True)
+
+	if settings_user:
+		db = con['admin']
+		db.authenticate(settings_user, settings_password)
 
         stats_tmp = {}
         for dbname in con.database_names():
@@ -88,6 +94,12 @@ if __name__ == "__main__":
 	settings_port = environ['PORT']
     if 'DB' in environ:
         settings_db = environ['DB']
+    if 'USER' in environ:
+        settings_user = environ['USER']
+    if 'PASSWORD' in environ:
+        settings_password = environ['PASSWORD']
+
+
 
     sp = argv[0].split('_')
     if len(sp) > 1:
