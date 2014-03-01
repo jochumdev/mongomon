@@ -34,10 +34,17 @@ from pymongo import ReadPreference
 settings_host = '127.0.0.1'
 settings_port = 27017
 settings_db = 'mydb'
+settings_user = ''
+settings_password = ''
 
 
 def getCollstats():
 	con = Connection(settings_host, int(settings_port), read_preference=ReadPreference.SECONDARY)
+
+        if settings_user:
+            db = con['admin']
+            db.authenticate(settings_user, settings_password)
+
 	db = con[settings_db]
 
 	for coll in db.collection_names():
@@ -80,6 +87,12 @@ if __name__ == "__main__":
 	settings_port = environ['PORT']
     if 'DB' in environ:
         settings_db = environ['DB']
+    if 'USER' in environ:
+        settings_user = environ['USER']
+    if 'PASSWORD' in environ:
+        settings_password = environ['PASSWORD']
+
+
 
     if len(argv) > 1 and argv[1] == "config":
         doConfig()
